@@ -1,0 +1,11 @@
+ConfigValue:
+  columns:
+    title:          { type: string, size: 200, notnull: true }
+    description:    { type: string }
+    name:           { type: string, size: 150, notnull: true }
+    app:            { type: string, size: 100 }
+    type:           { type: enum, values: [ 'String','Text','Number','Boolean','Date','DateTime' ] }
+    value:          { type: blob }
+    active:         { type: boolean, default: 1 }
+  indexes:
+    name:           { fields: [ 'name','app' ], type: unique }
