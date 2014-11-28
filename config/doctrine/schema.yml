@@ -7,5 +7,6 @@ ConfigValue:
     type:           { type: enum, values: [ 'String','Text','Number','Boolean','Date','DateTime' ] }
     value:          { type: blob }
     active:         { type: boolean, default: 1 }
+    required:       { type: boolean, default: 0 }
   indexes:
     name:           { fields: [ 'name','app' ], type: unique }

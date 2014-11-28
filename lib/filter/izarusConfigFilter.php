@@ -2,15 +2,15 @@
 
 class izarusConfigFilter extends sfFilter
 {
-  public function execute($filerChain)
+  public function execute($filterChain)
   {
     // Get config values from database
     $config_values = Doctrine_Core::getTable('ConfigValue')->createQuery('cv')->execute();
 
     foreach ($config_values as $cv) {
-      if (!empty($cv->getApp()) && $cv->getApp() == $this->getContext()->getConfiguration()->getApplication()) {
+      if ($cv->getApp() && ($cv->getApp() == sfConfig::get('sf_app'))) {
         sfConfig::set($cv->getName(), $cv->getValue());
-      } elseif (empty($cv->getApp())) {
+      } elseif (!$cv->getApp()) {
         sfConfig::set($cv->getName(), $cv->getValue());
       }
     }
