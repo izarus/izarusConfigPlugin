@@ -9,9 +9,9 @@ class izarusConfigFilter extends sfFilter
 
     foreach ($config_values as $cv) {
       if ($cv->getApp() && ($cv->getApp() == sfConfig::get('sf_app'))) {
-        sfConfig::set($cv->getName(), $cv->getValue());
+        sfConfig::set($this->getParameter('prefix','conf_').$cv->getName(), $cv->getValue());
       } elseif (!$cv->getApp()) {
-        sfConfig::set($cv->getName(), $cv->getValue());
+        sfConfig::set($this->getParameter('prefix','conf_').$cv->getName(), $cv->getValue());
       }
     }
 
